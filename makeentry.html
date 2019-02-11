@@ -5,6 +5,7 @@
     <title>Add a Book</title>
   </head>
   <body>
+
     <h1>Functionallity: </h1>
     <h2>This is where the user will add Books to the db.</h2>
     <h3>This page stisfies the "C" in the CURD functions meaning it will create entries to the database</h4>
@@ -14,7 +15,30 @@
       <li>At least one author of the book.</li>
       <li>At least one publisher of the book.</li>
       <li>At least one gerne that the book falls under.</li>
-
     </ul>
-  </body>
+
+    <h4>For multiple Authors publishers and gernes seperate entries with comma</h4>
+    <div class="input-container">
+      <label for="book-input" class = "input-label">Title</label>
+      <input name="book-input" class = "input-box" ""></input>
+    </div>
+
+    <div class="input-container">
+      <label for="author-input" class = "input-label">Author(s)</label>
+      <input name="author-input" class = "input-box"></input>
+    </div>
+
+    <div class="input-container">
+      <label for="publisher-input" class = "input-label">Publisher(s)</label>
+      <input name="publisher-input" class = "input-box"></input>
+    </div>
+
+  <div class="input-container">
+    <label for="gerne-input" class = "input-label">Gerne(s)</label>
+    <input name="gerne-input" class = "input-box"></input>
+  </div>
+
+  <button class="submit-button">Submit all feilds</button>
+
+</body>
 </html>
