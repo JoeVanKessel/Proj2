@@ -1,0 +1,15 @@
+*{
+  margin:0;
+  padding:0;
+}
+header {
+  position: relative;
+  border:0px;
+  margin: 0px;
+  background-color: rgba(45, 126, 210, 0.85);
+  height: 100%;
+}
+body{
+
+  background-color: rgba(213, 245, 245, 0.81);
+}
