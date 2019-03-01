@@ -46,8 +46,7 @@ INSERT INTO `Author` (`ID`, `Lname`, `Fname`) VALUES
 (5, 'Patterson', 'James'),
 (6, 'Fox', 'Candice'),
 (7, 'Rollins', 'James'),
-(8, 'Martin', 'George R.R.'),
-(9, 'Dougherty', 'Meghan');
+(8, 'Martin', 'George R.R.');
 
 -- --------------------------------------------------------
 
@@ -95,8 +94,7 @@ INSERT INTO `Book_Authors` (`BID`, `AID`) VALUES
 (4, 5),
 (4, 6),
 (5, 7),
-(6, 8),
-(7, 9);
+(6, 8);
 
 -- --------------------------------------------------------
 
