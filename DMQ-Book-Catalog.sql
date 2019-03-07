@@ -34,7 +34,7 @@ INSERT INTO Book_Publisher (BID,AID) VALUES (( select ID from Book where Title =
 --Search based on Author Name
 
 
-SELECT DISTINCT Title, lname, fname, pub_Name, gen_Name
+SELECT DISTINCT Title,lname, fname), GROUP_CONCAT(DISTINCT ' ', pub_Name), GROUP_CONCAT(DISTINCT ' ',gen_Name)
 FROM Book b 
 JOIN Book_Authors ba ON b.ID = ba.BID
 JOIN Author a ON ba.AID = a.ID
@@ -44,10 +44,12 @@ JOIN Book_Genre bg ON b.ID = bg.BID
 JOIN Genres g on bg.GID = g.ID
 
 WHERE fname = ':FnameInput' AND lname = ':LnameInput'
+
+GROUP BY Title                                                                                                 
 ORDER BY lname;
 
 --Search based on Book Title. Returns all info associated with the desired book title.
-SELECT DISTINCT Title, lname, fname, pub_Name, gen_Name
+SELECT DISTINCT Title, GROUP_CONCAT(DISTINCT ' ',lname,' ', fname), GROUP_CONCAT(DISTINCT ' ',pub_Name), GROUP_CONCAT(DISTINCT ' ', gen_Name)
 FROM Book b 
 JOIN Book_Authors ba ON b.ID = ba.BID
 JOIN Author a ON ba.AID = a.ID
@@ -55,12 +57,12 @@ JOIN Book_Publisher bp ON b.ID = bp.BID
 JOIN Publisher p ON bp.PID = p.ID
 JOIN Book_Genre bg ON b.ID = bg.BID
 JOIN Genres g on bg.GID = g.ID
+WHERE Title = 'Liar Liar'
 
-WHERE Title = ':titleInput'	
-ORDER BY Title, lname;
+Group BY Title
 
 --Search based on Publisher. Returns Book information associated with the desired PUblisher name sorted by author last name.
-SELECT DISTINCT Title, lname, fname, pub_Name, gen_Name
+SELECT DISTINCT Title, GROUP_CONCAT(DISTINCT ' ',lname,' ', fname),pub_Name, GROUP_CONCAT(DISTINCT ' ',gen_Name)
 FROM Book b 
 JOIN Book_Authors ba ON b.ID = ba.BID
 JOIN Author a ON ba.AID = a.ID
@@ -70,10 +72,11 @@ JOIN Book_Genre bg ON b.ID = bg.BID
 JOIN Genres g on bg.GID = g.ID
 
 WHERE pub_Name = ':pubNameInput'
+GROUP BY Title                                                                                                 
 ORDER BY Title
 
 --Search Based on Genre. Returns all book information associated with the desired Genre sorted first By Genre Name then by author last name.
-SELECT DISTINCT Title, lname, fname, pub_Name, gen_Name
+SELECT DISTINCT Title, GROUP_CONCAT(DISTINCT lname, fname), GROUP_CONCAT(DISTINCT pub_Name), gen_Name
 FROM Book b 
 JOIN Book_Authors ba ON b.ID = ba.BID
 JOIN Author a ON ba.AID = a.ID
@@ -83,6 +86,7 @@ JOIN Book_Genre bg ON b.ID = bg.BID
 JOIN Genres g on bg.GID = g.ID
 
 WHERE gen_Name = ':genNameInput'	
+GROUP BY Title                                                                                                 
 ORDER BY  Title,lname;
 
 --Update existing entry. Selects the ID based on the title the user wants to update. THe update function would also call INSERT queries for authors, genres, and Publishers which would insert the entries if they did not already exist. Any blind variable with New in the name indicates the new information the user inputs. Any blind variable with Update in the name indicates which entry the user wishes to update. 
